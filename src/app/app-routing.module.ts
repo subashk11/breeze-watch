@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path:'home',
-    component: HomeComponent
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
   },
   {
     path:'**',

@@ -1,24 +1,25 @@
 <div class="bg-[#202B3B] flex flex-col left-0 h-full py-8 px-2 items-center gap-10 rounded-2xl">
   <div>
-    <img src="../../assets/images/wi--day-light-wind.png" class="w-12" alt="cloud image"/>
+    <span class="iconify text-white w-12 h-12" data-icon="noto-v1:cloud"></span>
   </div>
-  <div class="flex gap-3 flex-col">
-    <div class="flex flex-col items-center justify-center">
-      <img src="../../assets/images/wi--day-light-wind.png" class="w-8 " alt="cloud image"/>
-      <p class="text-sm">
+  <div class="flex gap-8 flex-col">
+    <div class="flex flex-col items-center justify-center" (click)="navigateToHome()">
+      <span class="iconify text-white w-10 h-10" data-icon="fluent:weather-sunny-low-20-filled"></span>
+      <!-- <span class="icon-[]" style="width: 30px; height: 30px; color: white;"></span> -->
+      <p class="text-sm font-thin">
         Weather
       </p>
     </div>
     <div class="flex flex-col items-center justify-center">
-      <img src="../../assets/images/wi--day-light-wind.png" class="w-8" alt="cloud image"/>
-      <p class="text-sm">
-        Weather
+      <span class="iconify text-white w-8 h-8" data-icon="tabler:map-pin-search"></span>
+      <p class="text-sm font-thin">
+        Cities
       </p>
     </div>
     <div class="flex flex-col items-center justify-center">
-      <img src="../../assets/images/wi--day-light-wind.png" class="w-8" alt="cloud image"/>
-      <p class="text-sm">
-        Weather
+      <span class="iconify text-white w-8 h-8" data-icon="ooui:settings"></span>
+      <p class="text-sm font-thin">
+        Settings
       </p>
     </div>
   </div>

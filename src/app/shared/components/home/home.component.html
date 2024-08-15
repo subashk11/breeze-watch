@@ -1,48 +1,12 @@
 <div class="container flex flex-row p-5 h-full gap-5">
   <app-left-panel></app-left-panel>
   <div class="flex-1 flex flex-col gap-5">
-    <!-- Search bar -->
-    <input type="text" class="w-full bg-[#202B3B] p-1 px-3 text-white font-base rounded-xl"
-      placeholder="search for cities" />
-
-    <!-- Search bar -->
-
-    <!-- Main Content -->
-    <div class="grid grid-cols-2 my-1">
-      <div class="col-span-1 gap-8 flex flex-col">
-        <div class="">
-          <p class="text-4xl font-bold py-2">Madrid</p>
-          <p class="text-xl ">Chance of rain : 0%</p>
-        </div>
-        <p class="text-5xl">31&deg;</p>
-      </div>
-      <div class="col-span-1 justify-center flex items-center ">
-        <span class="iconify text-white w-48 h-48" data-icon="openmoji:sun-with-face"></span>
-      </div>
-    </div>
-    <!-- Main Content-->
-
-    <!-- Today Forecast Content-->
-     <div class="bg-[#202B3B] rounded-xl flex flex-col px-2">
-      <p class="text-xl font-bold p-1">Todays Forecast</p>
-      <div class="flex flex-row gap-4 px-3 py-2">
-        <ng-container *ngFor="let i of [1,2,3,4,5,6]">
-          <app-todayforecast></app-todayforecast>
-         </ng-container>
-      </div>
-     </div>
-    <!-- Today Forecast Content-->
-
-    <!-- Air Conditions -->
-    <app-air-condition></app-air-condition>
-    <!-- Air Conditions -->
-
+    <!-- Main page content-->
+    <router-outlet></router-outlet>
   </div>
-  <div class="h-full bg-[#202B3B] rounded-xl flex flex-col w-1/3">
+  <div class="bg-[#202B3B] rounded-xl flex flex-col w-1/3">
     <p>This Week Forcast</p>
-    <ng-container *ngFor="let i of [1,2,3,4,5,6]">
-      <app-right-panel></app-right-panel>
-    </ng-container>
+    <app-right-panel></app-right-panel>
   </div>
 
   <!--Right Side Panel-->

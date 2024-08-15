@@ -5,6 +5,9 @@ import { LeftPanelComponent } from './components/left-panel/left-panel.component
 import { TodayforecastComponent } from './components/todayforecast/todayforecast.component';
 import { RightPanelComponent } from './components/right-panel/right-panel.component';
 import { AirConditionComponent } from './components/air-condition/air-condition.component';
+import { WeatherInfoComponent } from './components/weather-info/weather-info.component';
+import { RouterModule } from '@angular/router';
+import { HomeRoutesModule } from './components/home/home-routes.module';
 
 
 
@@ -14,10 +17,14 @@ import { AirConditionComponent } from './components/air-condition/air-condition.
     LeftPanelComponent,
     TodayforecastComponent,
     RightPanelComponent,
-    AirConditionComponent
+    AirConditionComponent,
+    WeatherInfoComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    RouterModule,
+    HomeRoutesModule
+  ],
+  bootstrap:[HomeComponent]
 })
 export class SharedModule { }
