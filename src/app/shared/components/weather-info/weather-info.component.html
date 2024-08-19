@@ -5,17 +5,19 @@
 <!-- Search bar -->
 
 <!-- Main Content -->
-<div class="grid grid-cols-2 my-4">
-  <div class="col-span-1 gap-8 flex flex-col px-6">
+<div class="grid grid-cols-2 py-3">
+  <div class="col-span-1 gap-8 flex flex-col">
     <div class="">
       <p class="text-4xl font-bold py-2">{{currentCity}}</p>
       <p class="text-xl ">Chance of rain : {{chanceOfRain}}%</p>
+      <p class="text-xl ">{{weatherCondition}}</p>
     </div>
     <p class="text-5xl">{{celsiusValue}}&deg;</p>
   </div>
   <div class="col-span-1 justify-center flex items-center ">
     <div *ngIf="canViewImage">
-      <span class="iconify text-white w-40 h-40" [attr.data-icon]="widgetIcon" #spanWidget></span>
+      <!-- <span class="iconify text-white w-40 h-40" [attr.data-icon]="widgetIcon" #spanWidget></span> -->
+       <img [src]="widgetIcon" class=" w-40 h-40" alt="clouds images"/>
     </div>
     <!-- <img src="../../assets/images/wi--day-light-wind.png" class="w-48 h-48" alt="cloud image"/> -->
   </div>
@@ -23,16 +25,18 @@
 <!-- Main Content-->
 
 <!-- Today Forecast Content-->
-<div class="bg-[#202B3B] rounded-xl flex flex-col px-6">
-  <p class="text-xl font-bold p-1">Todays Forecast</p>
-  <div class="flex flex-row gap-4 px-3 py-2">
-    <ng-container *ngFor="let i of [1,2,3,4,5,6]">
-      <app-todayforecast></app-todayforecast>
+<div class="bg-[#202B3B] rounded-xl flex flex-col p-2">
+  <p class="text-xl font-bold">Todays Forecast</p>
+  <div class="flex flex-row gap-4 px-3">
+    <ng-container *ngFor="let hourReport of filterdHourlyReport">
+      <app-todayforecast [hourInfo] = "hourReport"></app-todayforecast>
     </ng-container>
   </div>
 </div>
 <!-- Today Forecast Content-->
 
 <!-- Air Conditions -->
-<app-air-condition></app-air-condition>
+<div *ngIf="dataIsLoaded">
+  <app-air-condition [airCondition]="airConditionInfo"></app-air-condition>
+</div>
 <!-- Air Conditions -->

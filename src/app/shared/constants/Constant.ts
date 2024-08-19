@@ -1,5 +1,5 @@
 export const Constant = {
-  API_KEY: 'f31efc67959191ffba9a08db390e2cf9',
+  API_KEY: 'e98c0219198a4704918135920241908',
 
   WeatherIcons: {
     clear: "openmoji:sun-with-face",

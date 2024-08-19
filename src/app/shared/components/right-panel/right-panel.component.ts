@@ -30,26 +30,11 @@ export class RightPanelComponent implements OnInit, OnDestroy{
       if(city.length > 0){
         this.cityName = city;
         console.log("2. Right side panel : ", city)
-        this.homeService.getLatitudeAndLongitude(this.cityName).subscribe((response) => {
-          if(response){
-            if(response){
-              this.lat = response[0].lat
-              this.lon = response[0].lon
-              console.log('lat and lon info : ', this.lat, ' lon : ', this.lon , ' for city = ', this.cityName);
-              // API CALL TO GET FORECAST
-              this.getWeatherForecast();
-            }
-          }
-        })
+        // this.getWeatherForecast();
       }
     })
   }
 
-  getWeatherForecast(){
-    this.homeService.getWeatherForecast(this.lat, this.lon).subscribe((response) => {
-      console.log(" 2. Right side panel API respone : ", response)
-    })
-  }
 
 
 
