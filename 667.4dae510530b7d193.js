@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkweather_app=self.webpackChunkweather_app||[]).push([[667],{5667:(e,s,a)=>{a.r(s),a.d(s,{DashboardModule:()=>u});var o=a(6814),n=a(4946);let u=(()=>{class t{static#a=this.\u0275fac=function(c){return new(c||t)};static#t=this.\u0275mod=n.oAB({type:t});static#s=this.\u0275inj=n.cJS({imports:[o.ez]})}return t})()}}]);
