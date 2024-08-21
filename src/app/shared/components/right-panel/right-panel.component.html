@@ -1,5 +1,7 @@
-<div class="flex justify-between">
-  <p>Mon</p>
-  <img src="../../assets/images/wi--day-light-wind.png" class="w-8 " alt="cloud image"/>
-  <p>34&deg;</p>
+<div class="flex justify-between outline- items-center p-6" 
+  *ngFor="let weekReport of weekForeCastList; let i = index"
+  [ngClass] = "i<6? 'border-b-2 border-b-slate-500':'' ">
+  <p>{{weekReport.day}}</p>
+  <img [src]="weekReport.widgetIconSrc" class="w-8 " alt="cloud image"/>
+  <p class="text-sm">{{weekReport.maxTemp}}/{{weekReport.minTemp}}</p>
 </div>

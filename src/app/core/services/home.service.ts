@@ -21,8 +21,16 @@ export class HomeService {
     return this.http.get(`https://api.weatherapi.com/v1/current.json?q=${city}&key=${Constant.API_KEY}`)
   }
 
+  getWeatherInfoLatLon(lat:number, lon:number){
+    return this.http.get(`https://api.weatherapi.com/v1/current.json?q=${lat},${lon}&key=${Constant.API_KEY}`)
+  }
+
   getWeatherForecast(city: string){
     return this.http.get(`https://api.weatherapi.com/v1/forecast.json?q=${city}&days=1&key=${Constant.API_KEY}`)
+  }
+  
+  getWeekWeatherForecast(city: string){
+    return this.http.get(`https://api.weatherapi.com/v1/forecast.json?q=${city}&days=7&key=${Constant.API_KEY}`)
   }
 
   getRandomCity(): string{
