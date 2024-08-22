@@ -12,6 +12,6 @@ export class AppComponent implements OnInit{
   title = 'weather-app';
   constructor(private appService: AppService){}
   ngOnInit(): void {
-    this.appService.getLocationAccess();  
+    this.appService.getLocationAccess();
   }
 }

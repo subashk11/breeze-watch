@@ -7,7 +7,6 @@ import { RightPanelComponent } from './components/right-panel/right-panel.compon
 import { AirConditionComponent } from './components/air-condition/air-condition.component';
 import { WeatherInfoComponent } from './components/weather-info/weather-info.component';
 import { RouterModule } from '@angular/router';
-import { HomeRoutesModule } from './components/home/home-routes.module';
 
 
 
@@ -23,7 +22,6 @@ import { HomeRoutesModule } from './components/home/home-routes.module';
   imports: [
     CommonModule,
     RouterModule,
-    HomeRoutesModule
   ],
   bootstrap:[HomeComponent]
 })

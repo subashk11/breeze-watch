@@ -33,6 +33,7 @@ export class AppService {
           switch (error.code) {
             case error.PERMISSION_DENIED:
               console.error("User denied the request for Geolocation.");
+              this.locationAccessProvided.next(false);
               break;
             case error.POSITION_UNAVAILABLE:
               console.error("Location information is unavailable.");
@@ -45,7 +46,6 @@ export class AppService {
               break; 
           }
 
-          this.locationAccessProvided.next(false);
         }
       )
     } else {
