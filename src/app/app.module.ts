@@ -10,6 +10,8 @@ import { WeatherInfoComponent } from './shared/components/weather-info/weather-i
 import { RightPanelComponent } from './shared/components/right-panel/right-panel.component';
 import { AirConditionComponent } from './shared/components/air-condition/air-condition.component';
 import { TodayforecastComponent } from './shared/components/todayforecast/todayforecast.component';
+import { CitySearchComponent } from './shared/components/city-search/city-search.component';
+import { CityDetailedWeatherInfoComponent } from './shared/components/city-detailed-weather-info/city-detailed-weather-info.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { TodayforecastComponent } from './shared/components/todayforecast/todayf
     WeatherInfoComponent,
     RightPanelComponent,
     AirConditionComponent,
-    TodayforecastComponent
+    TodayforecastComponent,
+    CitySearchComponent,
+    CityDetailedWeatherInfoComponent
   ],
   imports: [
     BrowserModule,

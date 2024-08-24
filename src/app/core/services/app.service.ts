@@ -13,6 +13,8 @@ export class AppService {
   latitute: number ;
   longitude: number;
   locationAccessProvided: Subject<boolean> = new Subject<boolean>();
+  dataLoaded: boolean = false;
+  locationDataLoaded: boolean = false;
 
   getLocationAccess(){
     if(navigator.geolocation){

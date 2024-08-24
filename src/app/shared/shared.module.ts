@@ -7,6 +7,8 @@ import { RightPanelComponent } from './components/right-panel/right-panel.compon
 import { AirConditionComponent } from './components/air-condition/air-condition.component';
 import { WeatherInfoComponent } from './components/weather-info/weather-info.component';
 import { RouterModule } from '@angular/router';
+import { CitySearchComponent } from './components/city-search/city-search.component';
+import { CityDetailedWeatherInfoComponent } from './components/city-detailed-weather-info/city-detailed-weather-info.component';
 
 
 
@@ -17,7 +19,9 @@ import { RouterModule } from '@angular/router';
     TodayforecastComponent,
     RightPanelComponent,
     AirConditionComponent,
-    WeatherInfoComponent
+    WeatherInfoComponent,
+    CitySearchComponent,
+    CityDetailedWeatherInfoComponent
   ],
   imports: [
     CommonModule,

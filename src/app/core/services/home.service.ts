@@ -3,12 +3,46 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Constant } from 'src/app/shared/constants/Constant';
 
+
+export interface ICitySearchData {
+  cityName : string,
+  iconSrc: string,
+  temperature: number,
+  time: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
   sampleCities: string[] = ['London', 'Chennai', 'Hyderabad', 'Tokyo', 'New York', 'Madrid']
   cityName: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  currentPage:BehaviorSubject<number> = new BehaviorSubject<number>(1);
+
+  sampleCityData: ICitySearchData = {
+    cityName : 'Chennai',
+    iconSrc : '//cdn.weatherapi.com/weather/64x64/night/353.png',
+    temperature : 24.5,
+    time: "06:07"
+  }
+
+  pastCitySearchList: ICitySearchData[] = [this.sampleCityData]
+
+  currentCity:string = '';
+  lat:string = '';
+  lon:string = '';
+  farenheitValue: number = 0;
+  celsiusValue: number = 0;
+  chanceOfRain: number = 0;
+  widgetIcon: string = '';
+  weatherCondition: string = ''
+  hourlyReport: any[] = null;
+  filterdHourlyReport: any[] = null;
+  airConditionInfo: any;
+
+  canViewImage: boolean = false;
+  dataIsLoaded: boolean = false;
+
   constructor(private http: HttpClient) {
 
    }

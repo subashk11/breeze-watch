@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomeService } from 'src/app/core/services/home.service';
 
 @Component({
   selector: 'app-left-panel',
@@ -12,11 +13,12 @@ export class LeftPanelComponent {
 
   // 0 -> home , 1 -> city search , 2 -> settings
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private homeService: HomeService){}
 
   navigateToHome(){
-    // route to home page
-    console.log("navigation to dashboard")
-    this.router.navigate(['home']);
+    this.homeService.currentPage.next(1);
+  }
+  navigateToCitySearch(){
+    this.homeService.currentPage.next(2);
   }
 }

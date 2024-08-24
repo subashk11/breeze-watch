@@ -28,7 +28,7 @@ export class RightPanelComponent implements OnInit, OnDestroy{
 
   week: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-  constructor(private homeService: HomeService){}
+  constructor(public homeService: HomeService){}
 
   ngOnDestroy(): void {
     this.unSub.next();

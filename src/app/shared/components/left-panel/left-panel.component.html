@@ -1,6 +1,6 @@
 <div class="bg-[#202B3B] flex flex-col left-0 h-full py-8 px-2 items-center gap-10 rounded-2xl">
-  <div>
-    <span class="iconify text-white w-12 h-12" data-icon="noto-v1:cloud"></span>
+  <div (click)="navigateToHome()">
+    <span class="iconify text-white w-12 h-12" data-icon="noto-v1:cloud" ></span>
   </div>
   <div class="flex gap-8 flex-col">
     <div class="flex flex-col items-center justify-center" (click)="navigateToHome()">
@@ -10,7 +10,7 @@
         Weather
       </p>
     </div>
-    <div class="flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center justify-center" (click)="navigateToCitySearch()">
       <span class="iconify text-white w-8 h-8" data-icon="tabler:map-pin-search"></span>
       <p class="text-sm font-thin">
         Cities

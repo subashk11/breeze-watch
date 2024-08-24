@@ -1,0 +1,35 @@
+<!-- Main Content -->
+<div class="grid grid-cols-2 border-b-2 border-b-slate-500 p-3">
+    <div class="col-span-1 gap-8 flex flex-col">
+        <div class="">
+            <p class="text-3xl font-bold py-2">{{homeService.currentCity}}</p>
+            <p class="text-xs ">Chance of rain : {{homeService.chanceOfRain}}%</p>
+            <!-- <p class="text-md ">{{homeService.weatherCondition}}</p> -->
+        </div>
+        <p class="text-3xl">{{homeService.celsiusValue}}&deg;</p>
+    </div>
+    <div class="col-span-1 justify-center flex items-center ">
+        <div *ngIf="homeService.canViewImage">
+            <img [src]="homeService.widgetIcon" class=" w-36 h-36" alt="clouds images" />
+        </div>
+    </div>
+</div>
+<!-- Main Content-->
+
+ <!-- Today Forecast Content-->
+ <div class="bg-[#202B3B] flex flex-col p-3 border-b-2 border-b-slate-500">
+    <p class="text-md font-bold pb-2">Todays Forecast</p>
+    <div class="flex flex-row gap-4 px-3">
+      <div *ngFor="let hourReport of homeService.filterdHourlyReport.slice(0,3); let i = index"
+        [ngClass]="i<2? 'border-r-2 border-r-slate-500' : ''">
+        <app-todayforecast [hourInfo]="hourReport"></app-todayforecast>
+      </div>
+    </div>
+  </div>
+  <!-- Today Forecast Content-->
+
+<!-- Air Conditions -->
+<div *ngIf="homeService.dataIsLoaded">
+    <app-air-condition [airCondition]="homeService.airConditionInfo"></app-air-condition>
+  </div>
+<!-- Air Conditions -->
