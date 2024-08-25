@@ -1,6 +1,7 @@
 <div class="p-2 overflow-auto">
-    <div *ngFor="let cityInfo of homeService.pastCitySearchList.reverse()">
-        <div class="w-full rounded-xl bg-[#202B3B] p-5 gap-4 flex flex-row justify-between my-3">
+    <div *ngFor="let cityInfo of homeService.pastCitySearchList; let i = index">
+        <div class="w-full rounded-xl bg-[#202B3B] p-5 gap-4 flex flex-row justify-between my-3"
+         (click)="showCityWeatherDetails(cityInfo, i)">
             <div class="flex flex-row gap-5">
                 <img [src]="cityInfo.iconSrc" alt="image" />
                 <div class="flex flex-col">

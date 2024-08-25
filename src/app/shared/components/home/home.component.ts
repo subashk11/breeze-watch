@@ -77,12 +77,6 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.homeService.getWeatherInfo(city).pipe(takeUntil(this.unSub)).subscribe((data: any)=> {
       // console.log('Data for current city : ', data);
       if(data){
-        this.homeService.celsiusValue = data.current.temp_c
-        this.homeService.chanceOfRain = data.current.cloud;
-        this.homeService.widgetIcon = data.current.condition.icon
-        this.homeService.weatherCondition = data.current.condition.text;
-        this.homeService.canViewImage = true;
-
         const airCondition = {
           temperature : data.current.temp_c,
           windSpeed: data.current.wind_kph,
@@ -90,8 +84,17 @@ export class HomeComponent implements OnInit, OnDestroy{
           uvIndex: data.current.uv
         }
 
-        this.homeService.airConditionInfo = airCondition;
-        // console.log('1. this.homeService.airConditionInfo: ' );
+        if(this.homeService.currentPage.value == 1){
+          this.homeService.celsiusValue = data.current.temp_c
+          this.homeService.chanceOfRain = data.current.cloud;
+          this.homeService.widgetIcon = data.current.condition.icon
+          this.homeService.weatherCondition = data.current.condition.text;
+          this.homeService.canViewImage = true;
+  
+  
+          this.homeService.airConditionInfo = airCondition;
+          console.log('1. API CALL TO WEATHER INFO : ', data );
+        }
 
         this.homeService.dataIsLoaded = true;
 
@@ -102,10 +105,14 @@ export class HomeComponent implements OnInit, OnDestroy{
             cityName : data.location.name,
             iconSrc: data.current.condition.icon,
             temperature: data.current.temp_c,
-            time: this.converTimeFormat(hours,minutes)
+            time: this.converTimeFormat(hours,minutes), 
+            chanceOfRain: data.current.cloud,
+            airConditionInfo: airCondition,
           }
 
-          this.homeService.pastCitySearchList.push(cityWeatherInfo)
+          this.homeService.pastCitySearchList.push(cityWeatherInfo);
+          this.homeService.searchButtonClicked.next(data.location.name);
+          this.homeService.currentCityWeatherInfo = cityWeatherInfo;
         }
       }
     }, (error) => {
@@ -215,7 +222,10 @@ export class HomeComponent implements OnInit, OnDestroy{
     // console.log(" Time : ", time)
     const amPm = hour >= 12 ? 'PM' : 'AM';
     const FormattedHour = hour % 12 || 12;
-    return FormattedHour+":"+minute+" "+amPm;
+    const formattedTime = `${FormattedHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    return formattedTime+" "+amPm;
     // console.log("Formatted Time : ", this.formattedTime)
   }
+
+  
 }

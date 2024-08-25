@@ -8,7 +8,9 @@ export interface ICitySearchData {
   cityName : string,
   iconSrc: string,
   temperature: number,
-  time: string
+  time: string,
+  chanceOfRain: number,
+  airConditionInfo: any
 }
 
 @Injectable({
@@ -19,14 +21,16 @@ export class HomeService {
   cityName: BehaviorSubject<string> = new BehaviorSubject<string>("");
   currentPage:BehaviorSubject<number> = new BehaviorSubject<number>(1);
 
-  sampleCityData: ICitySearchData = {
-    cityName : 'Chennai',
-    iconSrc : '//cdn.weatherapi.com/weather/64x64/night/353.png',
-    temperature : 24.5,
-    time: "06:07"
-  }
+  // sampleCityData: ICitySearchData = {
+  //   cityName : 'Chennai',
+  //   iconSrc : '//cdn.weatherapi.com/weather/64x64/night/353.png',
+  //   temperature : 24.5,
+  //   time: "06:07",
+  //   chanceOfRain: 30,
+  //   airConditionInfo : ""
+  // }
 
-  pastCitySearchList: ICitySearchData[] = [this.sampleCityData]
+  pastCitySearchList: ICitySearchData[] = []
 
   currentCity:string = '';
   lat:string = '';
@@ -43,8 +47,11 @@ export class HomeService {
   canViewImage: boolean = false;
   dataIsLoaded: boolean = false;
 
-  constructor(private http: HttpClient) {
+  searchButtonClicked:BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  currentCityWeatherInfo: ICitySearchData ;
 
+  constructor(private http: HttpClient) {
+    
    }
 
   getLatitudeAndLongitude(city: string){
