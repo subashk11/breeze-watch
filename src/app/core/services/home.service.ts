@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Constant } from 'src/app/shared/constants/Constant';
@@ -78,5 +78,13 @@ export class HomeService {
     // Return a random city from the list of items
     const randomInt:number = Math.floor(Math.random()*5);
     return this.sampleCities[randomInt];
+  }
+
+  getCitySearch(query: string){
+    const headers = new HttpHeaders({
+      Authorization : `Bearer ${Constant.CITY_SEARCH_KEY}`,
+      accept : 'application/vnd.amadeus+json'
+    })
+    return this.http.get(`https://test.api.amadeus.com/v1/reference-data/locations/cities?keyword=${query}&max=10`, {headers})
   }
 }

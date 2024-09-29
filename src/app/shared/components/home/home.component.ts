@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy{
   @ViewChild('searchElement') searchInput : ElementRef;
 
   regex = /^[a-zA-Z\s]*$/;
+  cities: any = [];
 
   constructor(
     public homeService: HomeService,
@@ -188,34 +189,44 @@ export class HomeComponent implements OnInit, OnDestroy{
       console.log("Enter key is pressed : ")
       event.preventDefault();
       event.stopPropagation();
-      this.searchCity(event)
+      this.searchCity(event, '')
     }
   }
 
 
   // CITY SEARCH API 
-  searchCity(event: UIEvent){
-    event.preventDefault();
-    event.stopPropagation();
+  searchCity(event, citySelected){
+
+    let inputValue = ''
+
     const textEl = this.searchInput.nativeElement as HTMLInputElement
 
-    const inputValue: string = textEl.value
-    let cityExists: boolean = false;
-   
-    if (inputValue.length > 0 && this.regex.test(inputValue)) {
-      // check city name already exisits in the list 
-      this.homeService.pastCitySearchList.forEach((city) => {
-        if (city.cityName.toLowerCase() == inputValue.toLowerCase()) {
-          console.error("City Already exisits!")
-          cityExists = true;
-          return ;
-        } 
-      })
-      if(!cityExists){
-        textEl.value = "";
-        this.getWeatherInfo(inputValue);
+
+    if(citySelected.length) {
+      inputValue = citySelected
+    } else {
+      event.preventDefault();
+      event.stopPropagation();
+  
+      inputValue = textEl.value
+      let cityExists: boolean = false;
+      if (inputValue.length > 0 && this.regex.test(inputValue)) {
+        // check city name already exisits in the list 
+        this.homeService.pastCitySearchList.forEach((city) => {
+          if (city.cityName.toLowerCase() == inputValue.toLowerCase()) {
+            console.error("City Already exisits!")
+            cityExists = true;
+            return ;
+          } 
+        })
+          
       }
     }
+   
+    this.getWeatherInfo(inputValue);
+    this.cities = []
+    textEl.value = ''
+
   }
 
   converTimeFormat(hour: number, minute: number){
@@ -225,6 +236,20 @@ export class HomeComponent implements OnInit, OnDestroy{
     const formattedTime = `${FormattedHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
     return formattedTime+" "+amPm;
     // console.log("Formatted Time : ", this.formattedTime)
+  }
+
+  getCities(event){
+    const value = event.target.value;
+    if (value.length > 2) {
+      this.homeService.getCitySearch(value).subscribe((response: any) => {
+        response.data.forEach((city) => {
+          this.cities.push(city.name);
+        })
+        console.log("Cities fetched : ", this.cities); // Assuming response has 'data' field with cities
+      });
+    } else {
+      this.cities = []
+    }
   }
 
   

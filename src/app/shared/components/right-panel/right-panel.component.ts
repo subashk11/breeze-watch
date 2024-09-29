@@ -51,6 +51,8 @@ export class RightPanelComponent implements OnInit, OnDestroy{
     this.homeService.getWeekWeatherForecast(this.cityName).subscribe((response: any) => {
       if(response){
         const foreCastForWeek: any[] = response.forecast.forecastday;
+        console.log('response.forecast: ', response.forecast);
+
         console.log('2. right side panel response for weekly forecast : ', foreCastForWeek);
         foreCastForWeek.forEach( dayReport => {
           const dateEpoch = dayReport.date_epoch

@@ -1,18 +1,30 @@
 <div class="container flex p-2 gap-3 h-full w-full">
   <app-left-panel></app-left-panel>
 
-  <div class="flex flex-col w-full space-y-3">
+  <div class="flex flex-col w-full gap-y-3">
     <!-- Search bar -->
-    <div class="top-0 flex flex-row w-full gap-3">
-      <input type="text" class="w-2/3 bg-[#202B3B] px-3 py-2 text-white font-base rounded-xl"
-        placeholder="search for cities" #searchElement/>
-        <button class="px-3 py-2 flex bg-[#202B3B] rounded-xl items-center justify-center gap-2" (click)="searchCity($event)">
+    <div class="top-0 flex flex-col w-full relative">
+      <div class="flex flex-row gap-x-3">
+        <input type="text" class="w-2/3 bg-[#202B3B] px-3 py-2 text-white font-base rounded-xl"
+          placeholder="search for cities" #searchElement (input)="getCities($event)" />
+        <button class="px-3 py-2 flex bg-[#202B3B] rounded-xl items-center justify-center gap-2"
+          (click)="searchCity($event, '')">
           Search
-          <span> 
-            <img src="./assets/images/pixelarticons--search.png" class="w-6" alt="cloud image"/>
+          <span>
+            <img src="./assets/images/pixelarticons--search.png" class="w-6" alt="cloud image" />
           </span>
         </button>
+      </div>
+      <div class="w-2/3 pt-3 pr-3 absolute top-[44px]">
+        <!-- Dropdown for cities -->
+        <ul *ngIf="cities.length > 0" class="w-full bg-[#202B3B] text-white rounded-xl p-3 z-50">
+          <li *ngFor="let city of cities" (click)="searchCity($event, city)" class="cursor-pointer p-2 hover:bg-[#1E3A57]">
+            {{ city }}
+          </li>
+        </ul>
+      </div>
     </div>
+
 
     <div class="flex flex-row h-full gap-3 overflow-auto">
       <div class="flex-1 flex flex-col gap-3 overflow-auto">
