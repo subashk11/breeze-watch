@@ -243,7 +243,9 @@ export class HomeComponent implements OnInit, OnDestroy{
     if (value.length > 2) {
       this.homeService.getCitySearch(value).subscribe((response: any) => {
         response.data.forEach((city) => {
-          this.cities.push(city.name);
+          if(!this.cities.includes(city.name)){
+            this.cities.push(city.name);
+          }
         })
         console.log("Cities fetched : ", this.cities); // Assuming response has 'data' field with cities
       });
